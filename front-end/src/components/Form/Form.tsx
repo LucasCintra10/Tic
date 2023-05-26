@@ -1,47 +1,76 @@
 import "./Form.css";
-import { useForm, SubmitHandler } from "react-hook-form";
-
-type FormValues = {
-  id: number;
-  descricao: string;
-  categoria: string;
-  dataEntrada: string;
-  estadoConservacao: string;
-  valor: number;
-  localizacao: string;
-
-}
+import { useState, FormEvent } from "react";
+import api from "../../lib/axios";
+import toast, { Toaster } from "react-hot-toast";
 
 function Form() {
+  const [id, setID] = useState(0);
+  const [descricao, setDescricao] = useState("");
+  const [categoria, setCategoria] = useState(0);
+  const [dataEntrada, setDataEntrada] = useState("");
+  const [estadoConservacao, setEstadoConservacao] = useState("Execelente");
+  const [valor, setValor] = useState(0);
+  const [localizacao, setLocalizacao] = useState(0);
 
-  const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
+  const patrimonio = {
+    id,
+    descricao,
+    categoria,
+    dataEntrada,
+    estadoConservacao,
+    valor,
+    localizacao,
+    status: "Ativo",
+  };
 
-
+  function createPatrimonio(event: FormEvent) {
+    event.preventDefault();
+    api
+      .post("/cadastro", patrimonio)
+      .then(() => toast.success("Patrimônio cadastrado com sucesso!"))
+      .catch(() => toast.error("Erro ao cadastrar patrimônio!"));
+  }
 
   return (
     <div className="form-container">
-      <form className="form-list" onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <Toaster />
+      </div>
+      <form className="form-list" onSubmit={createPatrimonio}>
         <ul>
           <li className="form-item">
             <label>ID do Patrimonio</label>
-            <input type="text" {...register("id")}/>
+            <input
+              type="string"
+              onChange={(event) => setID(parseInt(event.target.value))}
+            />
           </li>
           <li className="form-item">
             <label>Descrição</label>
-            <input type="text" {...register("descricao")} />
+            <input
+              type="text"
+              onChange={(event) => setDescricao(event.target.value)}
+            />
           </li>
           <li className="form-item">
             <label>Categoria</label>
-            <input type="text" {...register("categoria")}/>
+            <input
+              type="text"
+              onChange={(event) => setCategoria(parseInt(event.target.value))}
+            />
           </li>
           <li className="form-item">
             <label>Data de entrada</label>
-            <input type="date" {...register("dataEntrada")}/>
+            <input
+              type="date"
+              onChange={(event) => setDataEntrada(event.target.value)}
+            />
           </li>
           <li className="form-item">
             <label>Estado de conservação</label>
-            <select {...register("estadoConservacao")}>
+            <select
+              onChange={(event) => setEstadoConservacao(event.target.value)}
+            >
               <option value="Execelente">Execelente</option>
               <option value="Otimo">Ótimo</option>
               <option value="Regular">Regular</option>
@@ -51,16 +80,23 @@ function Form() {
           </li>
           <li className="form-item">
             <label>Valor</label>
-            <input type="text" {...register("valor")}/>
+            <input
+              type="text"
+              onChange={(event) => setValor(parseInt(event.target.value))}
+            />
           </li>
           <li className="form-item">
             <label>Localização</label>
-            <input type="text"{...register("localizacao")} />
+            <input
+              type="text"
+              onChange={(event) => setLocalizacao(parseInt(event.target.value))}
+            />
           </li>
         </ul>
-        <button type="submit" className="form-btn">Cadastrar</button>
+        <button type="submit" className="form-btn">
+          Cadastrar
+        </button>
       </form>
-      
     </div>
   );
 }
