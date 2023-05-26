@@ -1,23 +1,22 @@
 import "./Form.css";
 import { useForm, SubmitHandler } from "react-hook-form";
+import api from "../../lib/axios";
 
 type FormValues = {
   id: number;
   descricao: string;
-  categoria: string;
+  categoria: number;
   dataEntrada: string;
   estadoConservacao: string;
   valor: number;
-  localizacao: string;
-
+  localizacao: number;
+  status: string;
 }
 
 function Form() {
 
   const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
-
-
+  const onSubmit: SubmitHandler<FormValues> = data => console.log({...data, status: 'Ativo'})
 
   return (
     <div className="form-container">
