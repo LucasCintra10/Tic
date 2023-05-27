@@ -30,7 +30,7 @@ model Patrimonio {
 
 model Categoria {
   id          Int          @id@default(autoincrement())
-  nome        String
+  nm_categoria        String
   Patrimonios Patrimonio[]
 
   @@map("categorias")
@@ -38,7 +38,7 @@ model Categoria {
 
 model Localizacao {
   id           Int          @id@default(autoincrement())
-  nome         String
+  nm_sala         String
   Patriomonios Patrimonio[]
 
   @@map("localizacoes")

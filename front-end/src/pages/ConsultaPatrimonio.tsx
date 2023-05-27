@@ -1,8 +1,11 @@
+import Navbar from "../components/Navbar/Navbar";
+import Table from "../components/Table/Table";
 
 export default function ConsultaPatrimonio() {
     return (
-        <>
-        <p>Pagina Consulta Patrimonio</p>
-        </>
+        <main>
+            <Navbar />
+            <Table />
+        </main>
     )
 }

@@ -9,13 +9,13 @@ async function main() {
 
   await prisma.categoria.create({
     data: {
-      nome: "Eletrônicos",
+      nm_categoria: "Eletrônicos",
     },
   });
 
   await prisma.localizacao.create({
     data: {
-      nome: "Sala 1"
+      nm_sala: "Sala 1"
     },
   });
 

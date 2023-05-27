@@ -1,7 +1,7 @@
--- RedefineTables
-PRAGMA foreign_keys=OFF;
-CREATE TABLE "new_patrimonios" (
+-- CreateTable
+CREATE TABLE "patrimonios" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "placa" TEXT NOT NULL,
     "descricao" TEXT NOT NULL,
     "dataEntrada" DATETIME NOT NULL,
     "estado" TEXT NOT NULL,
@@ -12,8 +12,15 @@ CREATE TABLE "new_patrimonios" (
     CONSTRAINT "patrimonios_id_categoria_fkey" FOREIGN KEY ("id_categoria") REFERENCES "categorias" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "patrimonios_id_localizacao_fkey" FOREIGN KEY ("id_localizacao") REFERENCES "localizacoes" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
-INSERT INTO "new_patrimonios" ("dataEntrada", "descricao", "estado", "id", "id_categoria", "id_localizacao", "status", "valor") SELECT "dataEntrada", "descricao", "estado", "id", "id_categoria", "id_localizacao", "status", "valor" FROM "patrimonios";
-DROP TABLE "patrimonios";
-ALTER TABLE "new_patrimonios" RENAME TO "patrimonios";
-PRAGMA foreign_key_check;
-PRAGMA foreign_keys=ON;
+
+-- CreateTable
+CREATE TABLE "categorias" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "nm_categoria" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "localizacoes" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "nm_sala" TEXT NOT NULL
+);
