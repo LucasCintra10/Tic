@@ -1,14 +1,7 @@
-import "./App.css";
-import Form from "./components/Form/Form";
-import Navbar from "./components/Navbar/Navbar";
+import { PagesRoutes } from "./Routes";
 
 function App() {
-  return (
-    <main>
-      <Navbar />
-      <Form />
-    </main>
-  );
+  return <PagesRoutes />;
 }
 
 export default App;

@@ -6,7 +6,7 @@ export default async function appRoutes(app: FastifyInstance) {
   app.post("/cadastro", async (request) => {
     console.log(request.body);
     const createPatrimonio = z.object({
-      id: z.number(),
+      placa: z.string(),
       descricao: z.string(),
       categoria: z.number(),
       dataEntrada: z.string().transform((value) => new Date(value)),
@@ -17,7 +17,7 @@ export default async function appRoutes(app: FastifyInstance) {
     });
 
     const {
-      id,
+      placa,
       descricao,
       categoria,
       dataEntrada,
@@ -29,7 +29,7 @@ export default async function appRoutes(app: FastifyInstance) {
 
     await prisma.patrimonio.create({
       data: {
-        id,
+        placa,
         descricao,
         dataEntrada,
         estado: estadoConservacao,

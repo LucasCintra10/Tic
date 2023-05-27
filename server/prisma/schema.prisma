@@ -7,11 +7,12 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./dev.db"
+  url      = env("DATABASE_URL")
 }
 
 model Patrimonio {
-  id          Int      @id
+  id          Int      @id @default(autoincrement())
+  placa       String
   descricao   String
   dataEntrada DateTime
   estado      String
@@ -28,7 +29,7 @@ model Patrimonio {
 }
 
 model Categoria {
-  id          Int          @id
+  id          Int          @id@default(autoincrement())
   nome        String
   Patrimonios Patrimonio[]
 
@@ -36,7 +37,7 @@ model Categoria {
 }
 
 model Localizacao {
-  id           Int          @id
+  id           Int          @id@default(autoincrement())
   nome         String
   Patriomonios Patrimonio[]
 

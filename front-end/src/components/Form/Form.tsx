@@ -4,7 +4,7 @@ import api from "../../lib/axios";
 import toast, { Toaster } from "react-hot-toast";
 
 function Form() {
-  const [id, setID] = useState(0);
+  const [placa, setPlaca] = useState("");
   const [descricao, setDescricao] = useState("");
   const [categoria, setCategoria] = useState(0);
   const [dataEntrada, setDataEntrada] = useState("");
@@ -13,7 +13,7 @@ function Form() {
   const [localizacao, setLocalizacao] = useState(0);
 
   const patrimonio = {
-    id,
+    placa,
     descricao,
     categoria,
     dataEntrada,
@@ -39,10 +39,10 @@ function Form() {
       <form className="form-list" onSubmit={createPatrimonio}>
         <ul>
           <li className="form-item">
-            <label>ID do Patrimonio</label>
+            <label>Placa do Patrimonio</label>
             <input
               type="string"
-              onChange={(event) => setID(parseInt(event.target.value))}
+              onChange={(event) => setPlaca(event.target.value)}
             />
           </li>
           <li className="form-item">

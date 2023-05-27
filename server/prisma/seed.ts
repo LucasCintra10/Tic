@@ -9,21 +9,19 @@ async function main() {
 
   await prisma.categoria.create({
     data: {
-      id: 1,
       nome: "Eletrônicos",
     },
   });
 
   await prisma.localizacao.create({
     data: {
-      id: 1,
-      nome: "Sala 1",
+      nome: "Sala 1"
     },
   });
 
   await prisma.patrimonio.create({
     data: {
-      id: 1,
+      placa: "PC-001",
       descricao: "Computador",
       estado: "Novo",
       dataEntrada: new Date("2023-05-25"),
