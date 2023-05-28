@@ -29,16 +29,16 @@ model Patrimonio {
 }
 
 model Categoria {
-  id          Int          @id@default(autoincrement())
-  nm_categoria        String
-  Patrimonios Patrimonio[]
+  id           Int          @id @default(autoincrement())
+  nm_categoria String
+  Patrimonios  Patrimonio[]
 
   @@map("categorias")
 }
 
 model Localizacao {
-  id           Int          @id@default(autoincrement())
-  nm_sala         String
+  id           Int          @id @default(autoincrement())
+  nm_sala      String
   Patriomonios Patrimonio[]
 
   @@map("localizacoes")
