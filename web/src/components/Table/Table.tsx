@@ -1,7 +1,9 @@
+import "./Table.css";
 import api from "../../lib/axios";
 import { useEffect, useState } from "react";
-import "./Table.css";
 import { TableData } from "../../models/table-data";
+import * as Dialog from "@radix-ui/react-dialog";
+import FormUpdate from "../FormUpdate/FormUpdate";
 
 function Table() {
   const [tableData, setTableData] = useState<TableData[]>([]);
@@ -13,6 +15,7 @@ function Table() {
   useEffect(() => {
     getTableData();
   }, []);
+  
 
   return (
     <div className="table-container">
@@ -27,6 +30,7 @@ function Table() {
             <th>Valor</th>
             <th>Status</th>
             <th>Localizacao</th>
+            <th></th>
           </tr>
         </thead>
 
@@ -42,6 +46,21 @@ function Table() {
                 <td>{data.valor}</td>
                 <td>{data.status}</td>
                 <td>{data.nm_sala}</td>
+                <td>
+                  <Dialog.Root>
+                    <Dialog.Trigger value={data.id} type="button">
+                      #
+                    </Dialog.Trigger>
+                    <Dialog.Portal>
+                      <Dialog.Overlay className="modal-overlay" />
+                      <Dialog.Content className="modal-content">
+                        <Dialog.DialogClose className="modal-btn-close">X</Dialog.DialogClose>
+                          <Dialog.DialogTitle>Ajustar Patrimonio</Dialog.DialogTitle>
+                          <FormUpdate {...data} />
+                      </Dialog.Content>
+                    </Dialog.Portal>
+                  </Dialog.Root>
+                </td>
               </tr>
             </tbody>
           ))

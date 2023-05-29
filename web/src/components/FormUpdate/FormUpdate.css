@@ -1,0 +1,15 @@
+.form-update {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.form-update-item {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 24px 0;
+}

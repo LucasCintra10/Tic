@@ -1,4 +1,5 @@
 export interface TableData {
+    id: number;
     placa: string;
     descricao: string;
     dataEntrada: string;
