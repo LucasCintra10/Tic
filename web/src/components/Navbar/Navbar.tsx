@@ -7,27 +7,27 @@ function Navbar() {
       <ul className="navbar-list">
         <li className="navbar-item">
           <img src="src\assets\config.svg" alt="" />
-          <a href="#">Home</a>
+          <a href="http://localhost:5173/">Home</a>
         </li>
         <li className="navbar-item">
           <img src="src\assets\config.svg" alt="" />
-          <a href="#">Patrimônios</a>
+          <a href="http://localhost:5173/cadastro">Cadastro de Patrimônios</a>
         </li>
         <li className="navbar-item">
           <img src="src\assets\config.svg" alt="" />
-          <a href="#">Relátorios</a>
+          <a href="http://localhost:5173/consulta">Consulta de Patrimônios</a>
         </li>
         <li className="navbar-item">
           <img src="src\assets\config.svg" alt="" />
-          <a href="#">Configurações</a>
+          <a href="#">#####</a>
         </li>
         <li className="navbar-item">
           <img src="src\assets\config.svg" alt="" />
-          <a href="#">Ajuda</a>
+          <a href="#">#####</a>
         </li>
         <li className="navbar-item">
           <img src="src\assets\config.svg" alt="" />
-          <a href="#">Sair</a>
+          <a href="#">#####</a>
         </li>
       </ul>
     </div>
