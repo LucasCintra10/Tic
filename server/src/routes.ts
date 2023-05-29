@@ -43,7 +43,7 @@ export default async function appRoutes(app: FastifyInstance) {
 
   app.get("/consulta", async (request) => {
     const patrimonios = prisma.$queryRaw`
-    SELECT P.placa, P.descricao, P.dataEntrada, P.estado, P.valor, P.status, C.nm_categoria, L.nm_sala 
+    SELECT P.id, P.placa, P.descricao, P.dataEntrada, P.estado, P.valor, P.status, C.nm_categoria, L.nm_sala 
     FROM patrimonios P
     INNER JOIN categorias C ON P.id_categoria = C.id
     INNER JOIN localizacoes L ON P.id_localizacao = L.id
