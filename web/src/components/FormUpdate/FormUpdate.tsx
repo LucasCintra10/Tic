@@ -3,14 +3,24 @@ import { useState } from "react";
 import { TableData } from "../../models/table-data";
 
 function FormUpdate(props: TableData) {
-    const [placa, setPlaca] = useState(props.placa);
+  const [placa, setPlaca] = useState(props.placa);
+  const [descricao, setDescricao] = useState(props.descricao);
+  
   return (
     <div className="form-update-container">
       <form className="form-update">
         <ul>
           <li className="form-update-item">
             <label htmlFor="placa">Placa</label>
-            <input type="text" name="placa" id="placa" value={props.placa} onChange={(event) => {setPlaca(event.target.value)}} />
+            <input
+              type="text"
+              name="placa"
+              id="placa"
+              value={placa}
+              onChange={(event) => {
+                setPlaca(event.target.value);
+              }}
+            />
           </li>
           <li className="form-update-item">
             <label htmlFor="descricao">Descricao</label>
@@ -18,7 +28,10 @@ function FormUpdate(props: TableData) {
               type="text"
               name="descricao"
               id="descricao"
-              value={props.descricao}
+              value={descricao}
+              onChange={(event) => {
+                setDescricao(event.target.value);
+              }}
             />
           </li>
           <li className="form-update-item">
@@ -41,27 +54,15 @@ function FormUpdate(props: TableData) {
           </li>
           <li className="form-update-item">
             <label htmlFor="estado">Estado</label>
-            <input 
-            type="text" 
-            name="estado" 
-            id="estado" 
-            value={props.estado} />
+            <input type="text" name="estado" id="estado" value={props.estado} />
           </li>
           <li className="form-update-item">
             <label htmlFor="valor">Valor</label>
-            <input 
-            type="text" 
-            name="valor" 
-            id="valor" 
-            value={props.valor} />
+            <input type="text" name="valor" id="valor" value={props.valor} />
           </li>
           <li className="form-update-item">
             <label htmlFor="status">Status</label>
-            <input 
-            type="text" 
-            name="status" 
-            id="status" 
-            value={props.status} />
+            <input type="text" name="status" id="status" value={props.status} />
           </li>
           <li className="form-update-item">
             <label htmlFor="localizacao">Localizacao</label>
