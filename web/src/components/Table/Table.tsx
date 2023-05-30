@@ -3,7 +3,6 @@ import api from "../../lib/axios";
 import { useEffect, useState } from "react";
 import { TableData } from "../../models/table-data";
 import * as Dialog from "@radix-ui/react-dialog";
-import Form from "../Form/Form";
 import FormUpdate from "../FormUpdate/FormUpdate";
 
 function Table() {
@@ -16,6 +15,7 @@ function Table() {
   useEffect(() => {
     getTableData();
   }, []);
+  
 
   return (
     <div className="table-container">

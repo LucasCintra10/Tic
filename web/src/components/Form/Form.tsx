@@ -1,9 +1,25 @@
 import "./Form.css";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import api from "../../lib/axios";
 import toast, { Toaster } from "react-hot-toast";
+import { CategoryData, LocationData } from "../../models/auxiliary-data";
 
 function Form() {
+
+  const [categorias, setCategorias] = useState<CategoryData[]>([]);
+
+  function getCategorias() {
+    api.get("/consulta/categoria").then((response) => {setCategorias(response.data)})
+  }
+
+  const [localizacoes, setLocalizacoes] = useState<LocationData[]>([]);
+
+  function getLocalizacoes() {
+    api.get("/consulta/localizacao").then((response) => {setLocalizacoes(response.data)})
+  }
+
+  useEffect(() =>{getCategorias(), getLocalizacoes()}, [])
+
   const [placa, setPlaca] = useState("");
   const [descricao, setDescricao] = useState("");
   const [categoria, setCategoria] = useState(0);
@@ -54,10 +70,11 @@ function Form() {
           </li>
           <li className="form-item">
             <label>Categoria</label>
-            <input
-              type="text"
-              onChange={(event) => setCategoria(parseInt(event.target.value))}
-            />
+            <select onChange={(event) => setCategoria(parseInt(event.target.value))}>
+              {categorias.map((categoria) => (  
+                <option value={categoria.id}>{categoria.nm_categoria}</option>
+              ))}
+            </select>
           </li>
           <li className="form-item">
             <label>Data de entrada</label>
@@ -87,10 +104,11 @@ function Form() {
           </li>
           <li className="form-item">
             <label>Localização</label>
-            <input
-              type="text"
-              onChange={(event) => setLocalizacao(parseInt(event.target.value))}
-            />
+            <select onChange={(event) => setLocalizacao(parseInt(event.target.value))}>
+              {localizacoes.map((localizacao) => (
+                <option value={localizacao.id}>{localizacao.nm_sala}</option>
+              ))}
+            </select>
           </li>
         </ul>
         <button type="submit" className="form-btn">

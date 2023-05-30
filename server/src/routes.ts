@@ -3,6 +3,7 @@ import { z } from "zod";
 import { FastifyInstance } from "fastify";
 
 export default async function appRoutes(app: FastifyInstance) {
+  
   app.post("/cadastro", async (request) => {
     console.log(request.body);
     const createPatrimonio = z.object({
@@ -50,5 +51,14 @@ export default async function appRoutes(app: FastifyInstance) {
     `;
       return patrimonios
   });
+
+  app.get("/consulta/categoria", async (request) => {
+    const categorias = prisma.categoria.findMany()
+    return categorias
+  })
   
+  app.get("/consulta/localizacao", async (request) => {
+    const localizacoes = prisma.localizacao.findMany()
+    return localizacoes
+  })
 }
