@@ -3,7 +3,7 @@ import  './Global.css'
 
 export const Home = () =>{
     return (
-    <main>
+    <main className='home-page'>
         <Navbar/>
     </main>
     )

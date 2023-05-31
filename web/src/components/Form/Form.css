@@ -3,15 +3,17 @@
     flex-direction: column;
     align-items: center;
     width: 40%;
-    height: 80vh;
+    height: 80%;
     margin: auto auto;
     background: #FFFFFF;
     border-radius: 40px;
+    
 }
 .form-list {
     display: flex;
     flex-direction: column;
     margin: auto 0;
+    
 }
 .form-item {
     display: flex;
@@ -46,7 +48,7 @@
 .form-btn {
     width: 180px;
     height: 40px;
-    background-color: #677BEC;
+    background-color: #A4B0C3;
     border: none;
     border-radius: 15px;
     font-family: var(--font-family);
@@ -55,5 +57,6 @@
     margin: 16px auto ;
 }
 .form-btn:hover {
-    background-color: #4F63D7;
+    background-color: #78818F;
+    cursor: pointer;
 }

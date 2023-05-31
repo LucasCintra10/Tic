@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 70%;
+    width: 75%;
     height: 80vh;
     margin: auto auto;
     background: #FFFFFF;
@@ -34,6 +34,15 @@
 }
 .table-body td {
     padding: 14px 0px;
+}
+.table-body button {
+    background-color: #A4B0C3;
+    border: none;
+    border-radius: 8px;
+}
+.table-body button:hover {
+    background-color: #78818F;
+    cursor: pointer;
 }
 .modal-overlay {
     position: fixed;

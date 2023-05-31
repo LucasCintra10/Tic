@@ -49,11 +49,11 @@ function FormUpdate(props: TableData) {
 
   function updatePatrimonio(event: FormEvent) {
     event.preventDefault();
-    
+
     api
-    .patch("/atualizar", patrimonioUpdate)
-    .then(() => toast.success("Patrimônio atualizado com sucesso!"))
-    .catch(() => toast.error("Erro ao atualizar patrimônio!"));
+      .patch("/atualizar", patrimonioUpdate)
+      .then(() => toast.success("Patrimônio atualizado com sucesso!"))
+      .catch(() => toast.error("Erro ao atualizar patrimônio!"));
   }
 
   return (
@@ -61,54 +61,57 @@ function FormUpdate(props: TableData) {
       <div>
         <Toaster />
       </div>
-      <form className="form-update" onSubmit={updatePatrimonio}>
-        <ul>
-          <li className="form-update-item">
-            <label htmlFor="placa">Placa</label>
-            <input
-              type="text"
-              name="placa"
-              id="placa"
-              value={placa}
-              onChange={(event) => {
-                setPlaca(event.target.value);
-              }}
-            />
-          </li>
-          <li className="form-update-item">
-            <label htmlFor="descricao">Descricao</label>
-            <input
-              type="text"
-              name="descricao"
-              id="descricao"
-              value={descricao}
-              onChange={(event) => {
-                setDescricao(event.target.value);
-              }}
-            />
-          </li>
-          <li className="form-update-item">
-            <label htmlFor="categoria">Categoria</label>
-            <select
-              onChange={(event) => setCategoria(parseInt(event.target.value))}
-            >
-              {categorias.map((categoria) => (
-                <option value={categoria.id}>{categoria.nm_categoria}</option>
-              ))}
-            </select>
-          </li>
-          <li className="form-update-item">
-            <label htmlFor="dataEntrada">Data de Entrada</label>
-            <input
-              type="string"
-              name="dataEntrada"
-              id="dataEntrada"
-              value={new Date(dataEntrada).toLocaleDateString()}
-              onChange={(event) => {
-                setDataEntrada(event.target.value);
-              }}
-            />
-          </li>
+      <form className="form-update"  onSubmit={updatePatrimonio}>
+        <ul >
+          <div className="form-1st-section">
+            <li className="form-update-item">
+              <label htmlFor="placa">Placa</label>
+              <input
+                type="text"
+                name="placa"
+                id="placa"
+                value={placa}
+                onChange={(event) => {
+                  setPlaca(event.target.value);
+                }}
+              />
+            </li>
+
+            <li className="form-update-item">
+              <label htmlFor="descricao">Descricao</label>
+              <input
+                type="text"
+                name="descricao"
+                id="descricao"
+                value={descricao}
+                onChange={(event) => {
+                  setDescricao(event.target.value);
+                }}
+              />
+            </li>
+            <li className="form-update-item">
+              <label htmlFor="categoria">Categoria</label>
+              <select
+                onChange={(event) => setCategoria(parseInt(event.target.value))}
+              >
+                {categorias.map((categoria) => (
+                  <option value={categoria.id}>{categoria.nm_categoria}</option>
+                ))}
+              </select>
+            </li>
+            <li className="form-update-item">
+              <label htmlFor="dataEntrada">Data de Entrada</label>
+              <input
+                type="string"
+                name="dataEntrada"
+                id="dataEntrada"
+                value={new Date(dataEntrada).toLocaleDateString()}
+                onChange={(event) => {
+                  setDataEntrada(event.target.value);
+                }}
+              />
+            </li>
+          </div>
           <li className="form-update-item">
             <label htmlFor="estado">Estado</label>
             <select
@@ -157,7 +160,9 @@ function FormUpdate(props: TableData) {
             </select>
           </li>
         </ul>
-        <button type="submit">Atualizar</button>
+        <button type="submit" className="form-update-btn">
+          Atualizar
+        </button>
       </form>
     </div>
   );

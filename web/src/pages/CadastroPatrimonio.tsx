@@ -4,7 +4,7 @@ import './Global.css'
 
 export default function CadastroPatrimonio() {
     return (
-       <main>
+       <main className='cadastro-page'>
         <Navbar />
         <Form />
        </main>
