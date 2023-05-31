@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { TableData } from "../../models/table-data";
 import * as Dialog from "@radix-ui/react-dialog";
 import FormUpdate from "../FormUpdate/FormUpdate";
+import AlertDelete from "../AlertDelete/AlertDelete";
 
 function Table() {
   const [tableData, setTableData] = useState<TableData[]>([]);
@@ -31,6 +32,7 @@ function Table() {
             <th>Status</th>
             <th>Localizacao</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
 
@@ -57,6 +59,21 @@ function Table() {
                         <Dialog.DialogClose className="modal-btn-close">X</Dialog.DialogClose>
                           <Dialog.DialogTitle>Ajustar Patrimonio</Dialog.DialogTitle>
                           <FormUpdate {...data} />
+                      </Dialog.Content>
+                    </Dialog.Portal>
+                  </Dialog.Root>
+                </td>
+                <td>
+                <Dialog.Root>
+                    <Dialog.Trigger value={data.id} type="button">
+                      X
+                    </Dialog.Trigger>
+                    <Dialog.Portal>
+                      <Dialog.Overlay className="modal-overlay" />
+                      <Dialog.Content className="modal-content">
+                        <Dialog.DialogClose className="modal-btn-close">X</Dialog.DialogClose>
+                          <Dialog.DialogTitle>Atenção !!</Dialog.DialogTitle>
+                          <AlertDelete {...data} />
                       </Dialog.Content>
                     </Dialog.Portal>
                   </Dialog.Root>

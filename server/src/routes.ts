@@ -101,4 +101,22 @@ export default async function appRoutes(app: FastifyInstance) {
       },
     });
   });
+
+  app.delete("/deletar/:id", async (request) => {
+    const deletarPatrimonio = z.object({
+      id: z.string().transform((value) => parseInt(value))
+    })
+    
+    const { id } = deletarPatrimonio.parse(request.params)
+    console.log(id)
+    
+
+      await prisma.patrimonio.delete({
+      where: {
+        id: id
+      }
+    })
+
+    
+  })
 }
