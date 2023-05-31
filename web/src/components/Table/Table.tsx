@@ -64,19 +64,7 @@ function Table() {
                   </Dialog.Root>
                 </td>
                 <td>
-                <Dialog.Root>
-                    <Dialog.Trigger value={data.id} type="button">
-                      X
-                    </Dialog.Trigger>
-                    <Dialog.Portal>
-                      <Dialog.Overlay className="modal-overlay" />
-                      <Dialog.Content className="modal-content">
-                        <Dialog.DialogClose className="modal-btn-close">X</Dialog.DialogClose>
-                          <Dialog.DialogTitle>Atenção !!</Dialog.DialogTitle>
-                          <AlertDelete {...data} />
-                      </Dialog.Content>
-                    </Dialog.Portal>
-                  </Dialog.Root>
+                <AlertDelete {...data}/>
                 </td>
               </tr>
             </tbody>
