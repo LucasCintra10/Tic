@@ -3,6 +3,9 @@ import { useState, FormEvent, useEffect } from "react";
 import api from "../../lib/axios";
 import toast, { Toaster } from "react-hot-toast";
 import { CategoryData, LocationData } from "../../models/auxiliary-data";
+import DialogCreate from "../DialogCreate/DialogCreateCategory";
+import DialogCreateCategory from "../DialogCreate/DialogCreateCategory";
+import DialogCreateLocation from "../DialogCreate/DialogCreateLocation";
 
 function Form() {
 
@@ -70,6 +73,7 @@ function Form() {
           </li>
           <li className="form-item">
             <label>Categoria</label>
+            <DialogCreateCategory tipo="Categoria"/>
             <select onChange={(event) => setCategoria(parseInt(event.target.value))}>
               {categorias.map((categoria) => (  
                 <option value={categoria.id}>{categoria.nm_categoria}</option>
@@ -104,6 +108,7 @@ function Form() {
           </li>
           <li className="form-item">
             <label>Localização</label>
+            <DialogCreateLocation tipo="Localização"/>
             <select onChange={(event) => setLocalizacao(parseInt(event.target.value))}>
               {localizacoes.map((localizacao) => (
                 <option value={localizacao.id}>{localizacao.nm_sala}</option>

@@ -2,7 +2,7 @@ import "./FormUpdate.css";
 import { useState, useEffect, FormEvent } from "react";
 import { TableData } from "../../models/table-data";
 import { CategoryData, LocationData } from "../../models/auxiliary-data";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import api from "../../lib/axios";
 
 function FormUpdate(props: TableData) {
@@ -58,9 +58,7 @@ function FormUpdate(props: TableData) {
 
   return (
     <div className="form-update-container">
-      <div>
-        <Toaster />
-      </div>
+      
       <form className="form-update"  onSubmit={updatePatrimonio}>
         <ul >
           <div className="form-1st-section">
@@ -118,6 +116,7 @@ function FormUpdate(props: TableData) {
               onChange={(event) => {
                 setEstadoConservacao(event.target.value);
               }}
+              defaultValue={estadoConservacao}
             >
               <option value="Execelente">Execelente</option>
               <option value="Otimo">Ótimo</option>

@@ -4,7 +4,6 @@ import { FastifyInstance } from "fastify";
 
 export default async function appRoutes(app: FastifyInstance) {
   app.post("/cadastro", async (request) => {
-    console.log(request.body);
     const createPatrimonio = z.object({
       placa: z.string(),
       descricao: z.string(),
@@ -40,6 +39,34 @@ export default async function appRoutes(app: FastifyInstance) {
       },
     });
   });
+  
+  app.post("/cadastro/Categoria", async (request) => {
+    const createCategoria = z.object({
+      categoria: z.string()
+    })
+    
+    const { categoria} = createCategoria.parse(request.body)
+
+    await prisma.categoria.create({
+      data: {
+        nm_categoria : categoria
+      }
+    })
+  })
+
+  app.post("/cadastro/Localizacao", async (request) => {
+    const createLocalizacao = z.object({
+      localizacao: z.string()
+    })
+    
+    const { localizacao } = createLocalizacao.parse(request.body)
+
+    await prisma.localizacao.create({
+      data: {
+        nm_sala : localizacao
+      }
+    })
+  })
 
   app.get("/consulta", async (request) => {
     const patrimonios = prisma.$queryRaw`
