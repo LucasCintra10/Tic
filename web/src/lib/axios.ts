@@ -1,3 +1,4 @@
+/* Criando uma instância do axios para que todas as requisições tenham a mesma base URL */
 import axios from 'axios';
 
 const api = axios.create({

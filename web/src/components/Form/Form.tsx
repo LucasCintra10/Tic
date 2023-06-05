@@ -3,26 +3,29 @@ import { useState, FormEvent, useEffect } from "react";
 import api from "../../lib/axios";
 import toast, { Toaster } from "react-hot-toast";
 import { CategoryData, LocationData } from "../../models/auxiliary-data";
-import DialogCreate from "../DialogCreate/DialogCreateCategory";
 import DialogCreateCategory from "../DialogCreate/DialogCreateCategory";
 import DialogCreateLocation from "../DialogCreate/DialogCreateLocation";
 
+/*Função principal do componente de formulário, onde é chamado o componente de dialog de criação de categoria, o componente de dialog de criação de localização e o componente de toast do react-hot-toast. */
 function Form() {
 
+  {/*Hooks que armazenam os valores das categorias e das localizações. */}
   const [categorias, setCategorias] = useState<CategoryData[]>([]);
+  const [localizacoes, setLocalizacoes] = useState<LocationData[]>([]);
 
+  {/*Funções que fazem as requisições para pegar as categorias e as localizações. */}
   function getCategorias() {
     api.get("/consulta/categoria").then((response) => {setCategorias(response.data)})
   }
 
-  const [localizacoes, setLocalizacoes] = useState<LocationData[]>([]);
-
-  function getLocalizacoes() {
+   function getLocalizacoes() {
     api.get("/consulta/localizacao").then((response) => {setLocalizacoes(response.data)})
   }
 
+  {/*Hook que executa as funções que buscam as categorias e as localizações */}
   useEffect(() =>{getCategorias(), getLocalizacoes()}, [])
 
+  {/*Hooks que armazenam os valores dos campos do formulário. */}
   const [placa, setPlaca] = useState("");
   const [descricao, setDescricao] = useState("");
   const [categoria, setCategoria] = useState(0);
@@ -31,6 +34,7 @@ function Form() {
   const [valor, setValor] = useState(0);
   const [localizacao, setLocalizacao] = useState(0);
 
+  {/*Objeto que armazena os valores dos campos do formulário. */}
   const patrimonio = {
     placa,
     descricao,
@@ -42,6 +46,7 @@ function Form() {
     status: "Ativo",
   };
 
+  {/*Função que faz a requisição para criar o patrimônio. */}
   function createPatrimonio(event: FormEvent) {
     event.preventDefault();
     api
@@ -55,7 +60,12 @@ function Form() {
       <div>
         <Toaster />
       </div>
+      { /*Formulário de cadastro de patrimônio. */
+        /*Cada campo do formulário é um item de uma lista. */
+        /*O campo de categoria e de localização são selects que mostram as categorias e as localizações cadastradas. */
+        /*Os botões de categoria e de localização chamam os componentes de dialog de criação de categoria e de localização. */}
       <form className="form-list" onSubmit={createPatrimonio}>
+        {/*Campos do formulário. */}
         <ul>
           <li className="form-item">
             <label>Placa do Patrimonio</label>
@@ -73,7 +83,9 @@ function Form() {
           </li>
           <li className="form-item">
             <label>Categoria</label>
+            {/*Chamada do componente de dialog de criação de categoria. */}
             <DialogCreateCategory tipo="Categoria"/>
+            {/*Select que mostra as categorias cadastradas. */}
             <select onChange={(event) => setCategoria(parseInt(event.target.value))}>
               {categorias.map((categoria) => (  
                 <option value={categoria.id}>{categoria.nm_categoria}</option>
@@ -108,7 +120,9 @@ function Form() {
           </li>
           <li className="form-item">
             <label>Localização</label>
+            {/*Chamada do componente de dialog de criação de localização. */}
             <DialogCreateLocation tipo="Localização"/>
+            {/*Select que mostra as localizações cadastradas. */}
             <select onChange={(event) => setLocalizacao(parseInt(event.target.value))}>
               {localizacoes.map((localizacao) => (
                 <option value={localizacao.id}>{localizacao.nm_sala}</option>

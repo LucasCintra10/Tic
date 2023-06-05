@@ -1,8 +1,11 @@
 import "./Navbar.css";
 
+/*Função principal do componente de navbar. */
 function Navbar() {
   return (
+    
     <div className="navbar-container">
+      {/*Botões que redirecionam para as páginas de cadastro e consulta. */}
       <img src="src\assets\logo.svg" alt="" className="navbar-logo" />
       <ul className="navbar-list">
         <li className="navbar-item">

@@ -1,3 +1,4 @@
+/*Modelo de dados para a tabela de bens patrimoniais*/
 export interface TableData {
     id: number;
     placa: string;

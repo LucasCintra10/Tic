@@ -5,16 +5,19 @@ import { CategoryData, LocationData } from "../../models/auxiliary-data";
 import toast from "react-hot-toast";
 import api from "../../lib/axios";
 
+/*Função principal do componente de formulário de atualização, onde é chamado o componente de toast do react-hot-toast. */
 function FormUpdate(props: TableData) {
-  const [categorias, setCategorias] = useState<CategoryData[]>([]);
 
+  {/*Hooks que armazenam os valores das categorias e das localizações. */}
+  const [categorias, setCategorias] = useState<CategoryData[]>([]);
+  const [localizacoes, setLocalizacoes] = useState<LocationData[]>([]);
+
+  {/*Funções que fazem as requisições para pegar as categorias e as localizações. */}
   function getCategorias() {
     api.get("/consulta/categoria").then((response) => {
       setCategorias(response.data);
     });
   }
-
-  const [localizacoes, setLocalizacoes] = useState<LocationData[]>([]);
 
   function getLocalizacoes() {
     api.get("/consulta/localizacao").then((response) => {
@@ -22,10 +25,12 @@ function FormUpdate(props: TableData) {
     });
   }
 
+  {/*Hook que executa as funções que buscam as categorias e as localizações */}
   useEffect(() => {
     getCategorias(), getLocalizacoes();
   }, []);
 
+  {/*Hooks que armazenam os valores dos campos do formulário. */}
   const [placa, setPlaca] = useState(props.placa);
   const [descricao, setDescricao] = useState(props.descricao);
   const [categoria, setCategoria] = useState(props.id_categoria);
@@ -35,6 +40,7 @@ function FormUpdate(props: TableData) {
   const [status, setStatus] = useState(props.status);
   const [localizacao, setLocalizacao] = useState(props.id_localizacao);
 
+  {/*Objeto que armazena os valores dos campos do formulário. */}
   const patrimonioUpdate = {
     id: props.id,
     placa,
@@ -47,7 +53,10 @@ function FormUpdate(props: TableData) {
     status,
   };
 
+  {/*Função que faz a requisição para atualizar o patrimônio. */}
   function updatePatrimonio(event: FormEvent) {
+
+    {/*Verifica se os campos estão vazios. */}
     event.preventDefault();
 
     api
@@ -58,7 +67,9 @@ function FormUpdate(props: TableData) {
 
   return (
     <div className="form-update-container">
-      
+      { /*Formulário de atualização de patrimônio. */
+        /*Cada campo do formulário é preenchido com os valores do patrimônio que foi selecionado na tabela. */
+        /*O campo de categoria e localização são preenchidos com os valores que foram buscados na API. */}
       <form className="form-update"  onSubmit={updatePatrimonio}>
         <ul >
           <div className="form-1st-section">

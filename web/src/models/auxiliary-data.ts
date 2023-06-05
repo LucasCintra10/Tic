@@ -1,3 +1,4 @@
+/*Modelo de dados auxiliares para o cadastro de equipamentos*/
 export interface CategoryData {
     id: number;
     nm_categoria: string;
